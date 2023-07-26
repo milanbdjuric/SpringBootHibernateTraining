@@ -1,5 +1,6 @@
-package com.milanbdjuric.springcoredemo;
+package com.milanbdjuric.springcoredemo.rest;
 
+import com.milanbdjuric.util.Synth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
