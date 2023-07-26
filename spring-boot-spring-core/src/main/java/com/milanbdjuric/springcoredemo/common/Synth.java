@@ -1,4 +1,4 @@
-package com.milanbdjuric.util;
+package com.milanbdjuric.springcoredemo.common;
 
 public interface Synth {
 

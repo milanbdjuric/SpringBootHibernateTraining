@@ -1,4 +1,4 @@
-package com.milanbdjuric.util;
+package com.milanbdjuric.springcoredemo.common;
 
 import org.springframework.stereotype.Component;
 
@@ -7,6 +7,6 @@ public class MoogSynth implements Synth {
 
     @Override
     public String getSineWave() {
-        return "BEEEEEEP!";
+        return "BEEEEEEP! BEEEEEEEP!";
     }
 }
