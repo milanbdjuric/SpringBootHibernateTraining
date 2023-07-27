@@ -11,22 +11,29 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
     private Synth mySynth;
+    private Synth anotherSynth;
 
     @Autowired                                                             // constructor injection - optional if u have only 1 constructor
-    public DemoController(@Qualifier("korgSynth") Synth theSynth) {        // - @Qualifier has higher priority than @Primary!!
+    public DemoController(
+            @Qualifier("korgSynth") Synth theSynth,
+            @Qualifier("korgSynth") Synth theAnotherSynth) {
         mySynth = theSynth;
+        anotherSynth = theAnotherSynth;
+
         System.out.println("In constructor: " + getClass().getSimpleName());
     }
-/*
-    @Autowired   // setter injection
-    public void setMySynth(Synth theSynth){
-        mySynth = theSynth;
-    }
 
-*/
     @GetMapping("/synthsound")
     public String getSynthSound(){
         return mySynth.getSineWave();
     }
+
+    @GetMapping("/check")
+    public String check(){
+        return "Comparing beans: mySynth == anotherSynth, " + (mySynth == anotherSynth);
+        // if it`s Singleton - it`ll be true; if it`s Prototype then it`ll be false
+    }
+
+
 
 }

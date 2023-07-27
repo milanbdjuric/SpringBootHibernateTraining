@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Component
-@Lazy  // - not initialized because it`s not needed currently
 public class MoogSynth implements Synth {
 
     public MoogSynth(){
