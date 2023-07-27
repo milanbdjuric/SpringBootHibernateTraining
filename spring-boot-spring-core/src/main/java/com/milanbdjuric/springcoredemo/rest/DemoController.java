@@ -13,7 +13,7 @@ public class DemoController {
     private Synth mySynth;
 
     @Autowired // constructor injection - optional if u have only 1 constructor
-    public DemoController(@Qualifier("korgSynth") Synth theSynth) {
+    public DemoController(@Qualifier("korgSynth") Synth theSynth) {     // - @Qualifier has higher priority than @Primary!!
         mySynth = theSynth;
     }
 /*
