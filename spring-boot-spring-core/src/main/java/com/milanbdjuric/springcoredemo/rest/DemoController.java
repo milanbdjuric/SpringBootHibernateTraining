@@ -14,7 +14,7 @@ public class DemoController {
 //  private Synth anotherSynth;
 
     @Autowired                                                    // constructor injection - optional if u have only 1 constructor
-    public DemoController(@Qualifier("korgSynth") Synth theSynth)
+    public DemoController(@Qualifier("polySynth") Synth theSynth)
       /*    @Qualifier("korgSynth") Synth theAnotherSynth)*/   {
         mySynth = theSynth;
         //   anotherSynth = theAnotherSynth;
