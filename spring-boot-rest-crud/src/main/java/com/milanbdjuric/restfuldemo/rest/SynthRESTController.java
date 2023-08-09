@@ -42,29 +42,4 @@ public class SynthRESTController {
         return theSynths.get(synthId);
     }
 
-    @ExceptionHandler
-    public ResponseEntity<SynthErrorResponse> handleException(SynthNotFoundException exception){
-
-        SynthErrorResponse error = new SynthErrorResponse();
-
-        error.setStatus(HttpStatus.NOT_FOUND.value());
-        error.setMessage(exception.getMessage());
-        error.setTimeStamp(System.currentTimeMillis());
-
-        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<SynthErrorResponse> handleException(Exception exception) {
-
-        SynthErrorResponse error = new SynthErrorResponse();
-
-        error.setStatus(HttpStatus.BAD_REQUEST.value());
-        error.setMessage(exception.getMessage());
-        error.setTimeStamp(System.currentTimeMillis());
-
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
-
-    }
-
 }
