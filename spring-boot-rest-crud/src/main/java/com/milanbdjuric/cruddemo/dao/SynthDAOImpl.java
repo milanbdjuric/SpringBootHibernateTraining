@@ -26,4 +26,29 @@ public class SynthDAOImpl implements SynthDAO{
 
         return synths;
     }
+
+    @Override
+    public Synth findById(int theId) {
+
+        Synth theSynth = entityManager.find(Synth.class, theId);
+
+        return theSynth;
+    }
+
+    @Override
+    public Synth save(Synth theSynth) {
+
+        Synth dbSynth = entityManager.merge(theSynth);
+
+        return dbSynth;
+    }
+
+    @Override
+    public void deleteById(int theId) {
+
+        Synth theSynth = entityManager.find(Synth.class, theId);
+
+        entityManager.remove(theSynth);
+
+    }
 }

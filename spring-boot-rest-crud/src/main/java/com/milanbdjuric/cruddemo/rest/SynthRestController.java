@@ -3,9 +3,7 @@ package com.milanbdjuric.cruddemo.rest;
 import com.milanbdjuric.cruddemo.entity.Synth;
 import com.milanbdjuric.cruddemo.service.SynthService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,9 +21,59 @@ public class SynthRestController {
 
     @GetMapping("/synths")
     public List<Synth> findAll(){
-
         return synthService.findAll();
     }
+
+    @GetMapping("/synths/{synthId}")
+    public Synth getSynth(@PathVariable int synthId){
+
+        Synth theSynth = synthService.findById(synthId);
+
+        if(theSynth == null){
+            throw new RuntimeException("Synth ID not found - " + synthId);
+        }
+        return theSynth;
+    }
+
+    @PostMapping("/synths")
+    public Synth addSynth(@RequestBody Synth theSynth){
+
+        theSynth.setId(0);
+
+        Synth dbSynth = synthService.save(theSynth);
+
+        return dbSynth;
+    }
+
+    @PutMapping("/synths")
+
+    public Synth updateSynth(@RequestBody Synth theSynth){
+
+        Synth dbSynth = synthService.save(theSynth);
+
+        return  dbSynth;
+    }
+
+    @DeleteMapping("/synths/{synthId}")
+
+    public String deleteSynth(@PathVariable int synthId){
+
+        Synth tempSynth = synthService.findById(synthId);
+
+        if (tempSynth == null){
+            throw new RuntimeException("Synth ID not found - " + synthId);
+        }
+
+        synthService.deleteById(synthId);
+
+        return  "Deleted synth ID - " + synthId;
+
+
+
+    }
+
+
+
 
 
 }
