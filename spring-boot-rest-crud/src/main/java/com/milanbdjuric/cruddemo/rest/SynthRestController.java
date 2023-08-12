@@ -1,7 +1,8 @@
 package com.milanbdjuric.cruddemo.rest;
 
-import com.milanbdjuric.cruddemo.dao.SynthDAO;
 import com.milanbdjuric.cruddemo.entity.Synth;
+import com.milanbdjuric.cruddemo.service.SynthService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,15 +13,18 @@ import java.util.List;
 @RequestMapping("/api")
 public class SynthRestController {
 
-    private SynthDAO synthDAO;
+    private SynthService synthService;
 
-    public SynthRestController(SynthDAO theSynthDAO){
-        synthDAO = theSynthDAO;
+    @Autowired
+    public SynthRestController(SynthService theSynthService){
+
+        synthService = theSynthService;
     }
 
     @GetMapping("/synths")
     public List<Synth> findAll(){
-        return synthDAO.findAll();
+
+        return synthService.findAll();
     }
 
 
