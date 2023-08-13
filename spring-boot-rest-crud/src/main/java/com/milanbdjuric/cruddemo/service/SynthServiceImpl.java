@@ -1,42 +1,50 @@
 package com.milanbdjuric.cruddemo.service;
 
-import com.milanbdjuric.cruddemo.dao.SynthDAO;
+import com.milanbdjuric.cruddemo.dao.SynthRepository;
 import com.milanbdjuric.cruddemo.entity.Synth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SynthServiceImpl implements SynthService{
 
-    private SynthDAO synthDAO;
+    private SynthRepository synthRepository;
     @Autowired
-    public SynthServiceImpl(SynthDAO theSynthDAO){
-        synthDAO = theSynthDAO;
+    public SynthServiceImpl(SynthRepository theSynthRepository){
+        synthRepository = theSynthRepository;
     }
 
     @Override
     public List<Synth> findAll() {
-        return synthDAO.findAll();
+        return synthRepository.findAll();
     }
 
     @Override
     public Synth findById(int theId) {
-        return synthDAO.findById(theId);
+
+        Optional<Synth> result = synthRepository.findById(theId);
+        Synth theSynth = null;
+
+        if (result.isPresent()) {
+            theSynth = result.get();
+        } else {
+            throw new RuntimeException("Did not find synth ID - " + theId);
+        }
+        return theSynth;
     }
 
-    @Transactional
     @Override
     public Synth save(Synth theSynth) {
-        return synthDAO.save(theSynth);
+        return synthRepository.save(theSynth);
     }
 
-    @Transactional
     @Override
     public void deleteById(int theId) {
-        synthDAO.deleteById(theId);
+        synthRepository.deleteById(theId);
 
     }
 }
