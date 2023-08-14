@@ -18,7 +18,7 @@ public class SynthRestController {
         synthService = theSynthService;
     }
 
-    @GetMapping("/employees")
+    @GetMapping("/synths")
     public List<Synth> findAll(){
         return synthService.findAll();
     }
