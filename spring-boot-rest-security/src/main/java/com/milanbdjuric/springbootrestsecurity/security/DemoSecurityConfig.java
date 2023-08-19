@@ -17,7 +17,17 @@ public class DemoSecurityConfig {
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource){
 
-        return new JdbcUserDetailsManager(dataSource);
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+
+        jdbcUserDetailsManager.setUsersByUsernameQuery(
+                "select user_id, pw, active from members where user_id=?"
+        );
+
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
+                "select user_id, role from roles where user_id=?"
+        );
+
+        return jdbcUserDetailsManager;
     }
 
     @Bean
@@ -43,39 +53,5 @@ public class DemoSecurityConfig {
     }
 
 
-
-
-
-
-
-
-
-        /*
-    @Bean
-    public InMemoryUserDetailsManager userDetailsManager(){
-
-        UserDetails mirko = User.builder()
-                .username("mirko")
-                .password("{noop}mirko123")
-                .roles("EMPLOYEE")
-                .build();
-
-        UserDetails slavko = User.builder()
-                .username("slavko")
-                .password("{noop}slavko123")
-                .roles("EMPLOYEE", "MANAGER")
-                .build();
-
-        UserDetails bosko = User.builder()
-                .username("bosko")
-                .password("{noop}bosko123")
-                .roles("EMPLOYEE", "MANAGER", "ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(mirko, slavko, bosko);
-    }
-
-
-     */
 
 }
