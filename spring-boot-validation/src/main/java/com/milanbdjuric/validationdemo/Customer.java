@@ -1,5 +1,6 @@
 package com.milanbdjuric.validationdemo;
 
+import com.milanbdjuric.validationdemo.validation.SynthCode;
 import jakarta.validation.constraints.*;
 
 public class Customer {
@@ -14,6 +15,9 @@ public class Customer {
     private Integer freePasses;
     @Pattern(regexp = "^[0-9]{5}", message = "only 5 digits")
     private String postalCode;
+
+    @SynthCode
+    private String synthCode;
 
     public String getPostalCode() {
         return postalCode;
@@ -45,5 +49,13 @@ public class Customer {
 
     public void setFreePasses(Integer freePasses) {
         this.freePasses = freePasses;
+    }
+
+    public String getSynthCode() {
+        return synthCode;
+    }
+
+    public void setSynthCode(String synthCode) {
+        this.synthCode = synthCode;
     }
 }
