@@ -16,7 +16,7 @@ public class Customer {
     @Pattern(regexp = "^[0-9]{5}", message = "only 5 digits")
     private String postalCode;
 
-    @SynthCode
+    @SynthCode(value = "SYN", message = "must start with SYN")
     private String synthCode;
 
     public String getPostalCode() {
