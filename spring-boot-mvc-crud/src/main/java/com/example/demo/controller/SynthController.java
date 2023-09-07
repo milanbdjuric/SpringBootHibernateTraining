@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Synth;
+import com.example.demo.service.SynthService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,24 +15,18 @@ import java.util.List;
 @RequestMapping("/synths")
 public class SynthController {
 
-    private List<Synth> theSynths;
+    private SynthService synthService;
 
-    @PostConstruct
-    private void loadData(){
-
-        Synth synth1 = new Synth("Moog", "Sirin",12345);
-        Synth synth2 = new Synth("Dreadbox", "Typhon",54321);
-        Synth synth3 = new Synth("Roland", "J-6", 10293);
-
-        theSynths = new ArrayList<>();
-
-        theSynths.add(synth1);
-        theSynths.add(synth2);
-        theSynths.add(synth3);
+    public SynthController(SynthService theSynthService){
+        synthService = theSynthService;
     }
+
+
 
     @GetMapping("/list")
     public String listSynths(Model theModel){
+
+        List<Synth> theSynths = synthService.findAll();
 
         theModel.addAttribute("synths", theSynths);
 
