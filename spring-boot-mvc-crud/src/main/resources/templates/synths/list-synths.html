@@ -28,6 +28,7 @@
             <th>Manufacturer</th>
             <th>Model</th>
             <th>Serial Number</th>
+            <th>Action</th>
         </tr>
         </thead>
 
@@ -36,6 +37,12 @@
             <td th:text="${tempSynth.manufacturerName}" />
             <td th:text="${tempSynth.modelName}" />
             <td th:text="${tempSynth.serialNumber}" />
+            <td>
+                <a th:href="@{/synths/showFormForUpdate(synthId=${tempSynth.id})}"
+                class ="btn btn-info btn-sm">
+                    Update
+                </a>
+            </td>
 
 
         </tr>

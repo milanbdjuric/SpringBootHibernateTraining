@@ -4,10 +4,7 @@ import com.example.demo.entity.Synth;
 import com.example.demo.service.SynthService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +39,17 @@ public class SynthController {
         theModel.addAttribute("synth", theSynth);
 
         return "synths/synth-form";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("synthId") int theId, Model theModel){
+
+        Synth theSynth = synthService.findById(theId);
+
+        theModel.addAttribute("synth", theSynth);
+
+        return "synths/synth-form";
+
     }
 
     @PostMapping("/save")
