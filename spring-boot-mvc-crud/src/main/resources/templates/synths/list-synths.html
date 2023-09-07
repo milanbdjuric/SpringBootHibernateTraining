@@ -42,6 +42,14 @@
                 class ="btn btn-info btn-sm">
                     Update
                 </a>
+
+                <a th:href="@{/synths/delete(synthId=${tempSynth.id})}"
+                class="btn btn-danger btn-sm"
+                onclick="if (!(confirm('Are you sure you want to delete this synth?'))) return false">
+                    Delete
+                </a>
+
+
             </td>
 
 

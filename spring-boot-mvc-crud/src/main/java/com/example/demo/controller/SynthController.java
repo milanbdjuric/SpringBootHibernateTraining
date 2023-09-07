@@ -61,5 +61,13 @@ public class SynthController {
 
     }
 
+    @GetMapping("/delete")
+    public String delete(@RequestParam("synthId") int theId){
+
+        synthService.deleteById(theId);
+
+        return "redirect:/synths/list";
+    }
+
 
 }
