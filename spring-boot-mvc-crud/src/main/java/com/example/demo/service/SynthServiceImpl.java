@@ -20,7 +20,7 @@ public class SynthServiceImpl implements SynthService{
 
     @Override
     public List<Synth> findAll() {
-        return synthRepository.findAll();
+        return synthRepository.findAllByOrderByManufacturerNameAsc();
     }
 
     @Override
